@@ -83,7 +83,7 @@ async function main() {
       for (const file of files) {
         const slug = file.replace('.txt', '');
         const textPath = join(cityScriptsDir, file);
-        const mp3Path = join(cityAudioDir, `${slug}.mp3`);
+        const mp3Path = join(cityAudioDir, `${slug});
         await generateOne(textPath, mp3Path);
       }
     }
