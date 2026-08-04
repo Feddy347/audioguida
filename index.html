@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#FF6BFF">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Audioguida</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎧</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --tp-color-primary:#4F9DFF;
+  --tp-color-secondary:#B36BFF;
+  --tp-color-accent:#FFC6C7;
+  --tp-color-bg:#FF6BFF;
+  --tp-color-text:#2E294E;
+  --tp-color-block-bg:rgba(255,255,255,0.6);
+  --tp-font-title:'Press Start 2P',cursive;
+  --tp-font-body:'VT323',monospace;
+}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:linear-gradient(180deg,var(--tp-color-bg) 0%,#FFD1DC 100%);
+  color:var(--tp-color-text);font-family:var(--tp-font-body);
+  margin:0;padding:0;min-height:100dvh;
+  display:flex;flex-direction:column;align-items:center
+}
+
+/* Header */
+header{
+  position:sticky;top:0;z-index:100;width:100%;
+  background:linear-gradient(135deg,var(--tp-color-primary),var(--tp-color-secondary));
+  padding:14px 20px;display:flex;align-items:center;gap:12px;
+  box-shadow:0 3px 10px rgba(0,0,0,.15)
+}
+header h1{font-family:var(--tp-font-title);font-size:12px;color:#fff;letter-spacing:1px}
+.back-btn{
+  background:rgba(255,255,255,.2);border:none;color:#fff;
+  font-size:20px;cursor:pointer;padding:4px 10px;border-radius:8px;
+  display:none;transition:.2s
+}
+.back-btn:hover{background:rgba(255,255,255,.35)}
+.offline-badge{
+  margin-left:auto;font-family:var(--tp-font-title);font-size:8px;
+  padding:4px 10px;border-radius:20px;
+  background:rgba(255,255,255,.25);color:#fff;display:none
+}
+.offline-badge.show{display:block}
+
+/* Download bar */
+.download-bar{
+  width:100%;background:var(--tp-color-block-bg);
+  border-bottom:2px solid var(--tp-color-accent);
+  padding:10px 20px;display:none;align-items:center;gap:12px
+}
+.download-bar.show{display:flex}
+.download-bar button{
+  font-family:var(--tp-font-title);font-size:8px;
+  background:var(--tp-color-primary);border:2px solid var(--tp-color-accent);
+  color:#fff;border-radius:6px;padding:8px 14px;cursor:pointer;
+  white-space:nowrap;transition:.2s
+}
+.download-bar button:hover{background:var(--tp-color-secondary)}
+.download-bar button:active{transform:scale(.96);filter:brightness(1.2)}
+.download-bar .dl-status{font-size:18px;color:var(--tp-color-text);flex:1}
+.download-bar progress{flex:1;height:8px;border-radius:4px;appearance:none;-webkit-appearance:none}
+.download-bar progress::-webkit-progress-bar{background:var(--tp-color-accent);border-radius:4px}
+.download-bar progress::-webkit-progress-value{background:linear-gradient(90deg,var(--tp-color-primary),var(--tp-color-secondary));border-radius:4px}
+
+/* Main */
+main{padding:20px 16px 140px;width:100%;max-width:600px}
+
+/* Experience card (home) */
+.experience-card{
+  background:rgba(179,107,255,.9);border-radius:12px;
+  padding:18px 20px;margin-bottom:12px;cursor:pointer;
+  border:2px solid var(--tp-color-accent);
+  box-shadow:0 3px 10px rgba(46,41,78,.12);
+  transition:all .2s ease
+}
+.experience-card:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.2);background:rgba(179,107,255,1)}
+.experience-card:active{transform:scale(.97)}
+.experience-card h2{font-family:var(--tp-font-title);font-size:12px;color:#fff;margin-bottom:6px;line-height:1.6}
+.experience-card .meta{font-size:20px;color:rgba(255,255,255,.85)}
+
+/* City header */
+.city-section{margin-bottom:20px}
+.city-header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 16px;margin-bottom:10px;
+  background:linear-gradient(135deg,var(--tp-color-primary),var(--tp-color-secondary));
+  border-radius:10px;font-family:var(--tp-font-title);font-size:10px;
+  color:#fff;text-transform:uppercase;letter-spacing:1px;
+  box-shadow:0 3px 10px rgba(0,0,0,.15)
+}
+.city-count{
+  background:rgba(255,255,255,.25);padding:3px 10px;
+  border-radius:20px;font-size:9px
+}
+
+/* Stop card */
+.stop-card{
+  background:rgba(255,255,255,.88);border-radius:10px;
+  padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;
+  gap:12px;cursor:pointer;border:1px solid var(--tp-color-accent);
+  box-shadow:0 2px 4px rgba(0,0,0,.06);transition:all .2s ease
+}
+.stop-card:hover{transform:translateY(-1px);box-shadow:0 4px 10px rgba(0,0,0,.12)}
+.stop-card:active{transform:scale(.97)}
+.stop-card.active{
+  background:rgba(179,107,255,.15);
+  border-color:var(--tp-color-secondary);
+  border-width:2px
+}
+.stop-info{flex:1;min-width:0}
+.stop-info h3{font-size:22px;font-weight:400;line-height:1.3;color:var(--tp-color-text)}
+.stop-info .subtitle{
+  font-size:16px;color:rgba(46,41,78,.55);
+  margin-top:2px;line-height:1.3;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
+.stop-duration{font-size:16px;color:rgba(46,41,78,.5);white-space:nowrap}
+.play-icon{
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,var(--tp-color-primary),var(--tp-color-secondary));
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  box-shadow:0 2px 8px rgba(79,157,255,.3);transition:.2s
+}
+.play-icon:hover{transform:scale(1.08)}
+.play-icon:active{transform:scale(.95);filter:brightness(1.2)}
+.play-icon svg{width:16px;height:16px;fill:#fff;margin-left:2px}
+.play-icon.playing svg{margin-left:0}
+
+/* Player bar */
+.player-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:200;
+  background:rgba(255,255,255,.95);
+  border-top:2px solid var(--tp-color-accent);
+  padding:10px 16px calc(10px + env(safe-area-inset-bottom,0));
+  transform:translateY(100%);transition:transform .25s ease;
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  box-shadow:0 -4px 20px rgba(0,0,0,.1)
+}
+.player-bar.show{transform:translateY(0)}
+.player-now{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.player-now .now-title{font-size:20px;font-weight:400;flex:1;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--tp-color-text)}
+.player-now .now-city{font-family:var(--tp-font-title);font-size:8px;color:var(--tp-color-secondary)}
+.player-controls{display:flex;align-items:center;gap:10px}
+.ctrl-btn{
+  background:none;border:none;color:var(--tp-color-text);cursor:pointer;
+  padding:6px;font-size:22px;transition:.15s
+}
+.ctrl-btn:hover{color:var(--tp-color-secondary)}
+.ctrl-btn.main{
+  background:linear-gradient(135deg,var(--tp-color-primary),var(--tp-color-secondary));
+  color:#fff;width:44px;height:44px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:18px;
+  box-shadow:0 3px 10px rgba(79,157,255,.3)
+}
+.ctrl-btn.main:hover{filter:brightness(1.1)}
+.ctrl-btn.main:active{transform:scale(.95);filter:brightness(1.2)}
+.seek-bar{flex:1;display:flex;align-items:center;gap:6px}
+.seek-bar input[type=range]{
+  flex:1;-webkit-appearance:none;appearance:none;
+  height:6px;background:var(--tp-color-accent);border-radius:3px;outline:none;cursor:pointer
+}
+.seek-bar input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:16px;height:16px;border-radius:50%;
+  background:linear-gradient(135deg,var(--tp-color-primary),var(--tp-color-secondary));
+  cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.2)
+}
+.seek-bar span{font-size:16px;color:rgba(46,41,78,.5);min-width:34px;font-variant-numeric:tabular-nums}
+
+/* Empty state */
+.empty{text-align:center;padding:60px 20px;color:var(--tp-color-text)}
+.empty h2{font-family:var(--tp-font-title);font-size:12px;margin-bottom:12px;line-height:1.8}
+.empty p{font-size:22px;opacity:.7}
+.empty .emoji{font-size:48px;display:block;margin-bottom:16px}
+
+/* Fade in */
+.view{animation:fadeIn .25s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* Mobile */
+@media(max-width:480px){
+  header h1{font-size:10px}
+  .city-header{font-size:9px;padding:8px 12px}
+  .stop-info h3{font-size:20px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <button class="back-btn" id="backBtn" aria-label="Indietro">‹</button>
+  <h1 id="headerTitle">🎧 AUDIOGUIDA</h1>
+  <span class="offline-badge" id="offlineBadge">OFFLINE</span>
+</header>
+
+<div class="download-bar" id="downloadBar">
+  <button id="downloadBtn">📥 SCARICA</button>
+  <span class="dl-status" id="dlStatus"></span>
+  <progress id="dlProgress" value="0" max="100" style="display:none"></progress>
+</div>
+
+<main id="app"></main>
+
+<div class="player-bar" id="playerBar">
+  <div class="player-now">
+    <div>
+      <div class="now-city" id="nowCity"></div>
+      <div class="now-title" id="nowTitle">—</div>
+    </div>
+  </div>
+  <div class="player-controls">
+    <button class="ctrl-btn" id="btnPrev" aria-label="Precedente">⏮</button>
+    <button class="ctrl-btn main" id="btnPlay" aria-label="Play">▶</button>
+    <button class="ctrl-btn" id="btnNext" aria-label="Successivo">⏭</button>
+    <div class="seek-bar">
+      <span id="timeCur">0:00</span>
+      <input type="range" id="seekRange" min="0" max="100" value="0" step="0.1">
+      <span id="timeDur">0:00</span>
+    </div>
+  </div>
+</div>
+
+<audio id="audioEl" preload="auto"></audio>
+
+<script>
+const $ = s => document.querySelector(s);
+const app = $('#app');
+const audio = $('#audioEl');
+let data = [];
+let currentView = 'home';
+let currentExp = null;
+let currentCity = null;
+let currentStopIndex = -1;
+let allStopsFlat = [];
+
+async function init() {
+  try {
+    const r = await fetch('data/experiences.json');
+    data = await r.json();
+    renderHome();
+    setupPlayer();
+    setupOffline();
+  } catch(e) {
+    app.innerHTML = '<div class="empty"><span class="emoji">🗺️</span><h2>Nessuna guida trovata</h2><p>Carica experiences.json nella cartella data/</p></div>';
+  }
+}
+
+function renderHome() {
+  currentView = 'home';
+  currentExp = null;
+  $('#backBtn').style.display = 'none';
+  $('#headerTitle').textContent = '🎧 AUDIOGUIDA';
+  $('#downloadBar').classList.remove('show');
+  if (!data.length) {
+    app.innerHTML = '<div class="empty"><span class="emoji">🗺️</span><h2>Nessuna guida</h2><p>Aggiungi esperienze al file experiences.json</p></div>';
+    return;
+  }
+  app.innerHTML = '<div class="view">' + data.map(exp => {
+    const total = exp.cities.reduce((s,c) => s + c.stops.length, 0);
+    const cities = exp.cities.map(c => c.title).join(' · ');
+    return `<div class="experience-card" data-id="${exp.id}">
+      <h2>🌍 ${exp.title}</h2>
+      <div class="meta">${cities} — ${total} tappe</div>
+    </div>`;
+  }).join('') + '</div>';
+  app.querySelectorAll('.experience-card').forEach(el => {
+    el.addEventListener('click', () => {
+      const exp = data.find(e => e.id === el.dataset.id);
+      if (exp) renderExperience(exp);
+    });
+  });
+}
+
+function renderExperience(exp) {
+  currentView = 'experience';
+  currentExp = exp;
+  $('#backBtn').style.display = 'block';
+  $('#headerTitle').textContent = exp.title.toUpperCase();
+  $('#downloadBar').classList.add('show');
+  allStopsFlat = [];
+  exp.cities.forEach(city => {
+    city.stops.forEach(stop => {
+      allStopsFlat.push({ ...stop, cityTitle: city.title });
+    });
+  });
+  let html = '<div class="view">';
+  exp.cities.forEach(city => {
+    html += `<div class="city-section">
+      <div class="city-header"><span>${city.title}</span><span class="city-count">${city.stops.length}</span></div>`;
+    city.stops.forEach((stop, i) => {
+      const globalIdx = allStopsFlat.findIndex(s => s.slug === stop.slug);
+      const dur = stop.duration ? formatTime(stop.duration) : '';
+      const sub = [stop.subtitle_original, stop.subtitle_en].filter(Boolean).join(' · ');
+      html += `<div class="stop-card" data-idx="${globalIdx}" data-slug="${stop.slug}">
+        <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+        <div class="stop-info">
+          <h3>${stop.title}</h3>
+          ${sub ? `<div class="subtitle">${sub}</div>` : ''}
+        </div>
+        ${dur ? `<div class="stop-duration">${dur}</div>` : ''}
+      </div>`;
+    });
+    html += '</div>';
+  });
+  html += '</div>';
+  app.innerHTML = html;
+  app.querySelectorAll('.stop-card').forEach(el => {
+    el.addEventListener('click', () => playStop(parseInt(el.dataset.idx)));
+  });
+  highlightActive();
+}
+
+function playStop(idx) {
+  if (idx < 0 || idx >= allStopsFlat.length) return;
+  const stop = allStopsFlat[idx];
+  currentStopIndex = idx;
+  audio.src = stop.audio;
+  audio.play().catch(() => {});
+  $('#nowTitle').textContent = stop.title;
+  $('#nowCity').textContent = stop.cityTitle;
+  $('#playerBar').classList.add('show');
+  $('#btnPlay').textContent = '⏸';
+  highlightActive();
+  if ('mediaSession' in navigator) {
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: stop.title, artist: stop.cityTitle, album: currentExp?.title || 'Audioguida'
+    });
+    navigator.mediaSession.setActionHandler('play', () => audio.play());
+    navigator.mediaSession.setActionHandler('pause', () => audio.pause());
+    navigator.mediaSession.setActionHandler('previoustrack', () => playStop(currentStopIndex - 1));
+    navigator.mediaSession.setActionHandler('nexttrack', () => playStop(currentStopIndex + 1));
+  }
+}
+
+function highlightActive() {
+  document.querySelectorAll('.stop-card').forEach(el => {
+    el.classList.toggle('active', parseInt(el.dataset.idx) === currentStopIndex);
+    const icon = el.querySelector('.play-icon');
+    if (parseInt(el.dataset.idx) === currentStopIndex && !audio.paused) {
+      icon.innerHTML = '<svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" fill="#fff"/><rect x="14" y="5" width="4" height="14" fill="#fff"/></svg>';
+      icon.classList.add('playing');
+    } else {
+      icon.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg>';
+      icon.classList.remove('playing');
+    }
+  });
+}
+
+function setupPlayer() {
+  const seekRange = $('#seekRange');
+  audio.addEventListener('timeupdate', () => {
+    if (!audio.duration) return;
+    seekRange.value = (audio.currentTime / audio.duration) * 100;
+    $('#timeCur').textContent = formatTime(audio.currentTime);
+    $('#timeDur').textContent = formatTime(audio.duration);
+  });
+  audio.addEventListener('ended', () => {
+    if (currentStopIndex < allStopsFlat.length - 1) playStop(currentStopIndex + 1);
+    else { $('#btnPlay').textContent = '▶'; highlightActive(); }
+  });
+  audio.addEventListener('pause', () => { $('#btnPlay').textContent = '▶'; highlightActive(); });
+  audio.addEventListener('play', () => { $('#btnPlay').textContent = '⏸'; highlightActive(); });
+  seekRange.addEventListener('input', () => {
+    if (audio.duration) audio.currentTime = (seekRange.value / 100) * audio.duration;
+  });
+  $('#btnPlay').addEventListener('click', () => {
+    if (audio.paused) audio.play().catch(() => {}); else audio.pause();
+  });
+  $('#btnPrev').addEventListener('click', () => {
+    if (audio.currentTime > 3) audio.currentTime = 0;
+    else playStop(currentStopIndex - 1);
+  });
+  $('#btnNext').addEventListener('click', () => playStop(currentStopIndex + 1));
+  $('#backBtn').addEventListener('click', () => { if (currentView === 'experience') renderHome(); });
+}
+
+function setupOffline() {
+  const dlBtn = $('#downloadBtn');
+  const dlStatus = $('#dlStatus');
+  const dlProgress = $('#dlProgress');
+  window.addEventListener('online', () => $('#offlineBadge').classList.remove('show'));
+  window.addEventListener('offline', () => $('#offlineBadge').classList.add('show'));
+  if (!navigator.onLine) $('#offlineBadge').classList.add('show');
+  dlBtn.addEventListener('click', async () => {
+    if (!currentExp) return;
+    const urls = allStopsFlat.map(s => s.audio);
+    dlBtn.disabled = true; dlBtn.textContent = '⏳ SCARICANDO...';
+    dlProgress.style.display = 'block';
+    let done = 0;
+    const cache = await caches.open('audioguida-audio-v1');
+    for (const url of urls) {
+      try { const ex = await cache.match(url); if (!ex) await cache.add(url); } catch(e) { console.warn('Cache fail:', url, e); }
+      done++;
+      dlProgress.value = (done / urls.length) * 100;
+      dlStatus.textContent = `${done}/${urls.length}`;
+    }
+    dlBtn.textContent = '✅ PRONTO!';
+    dlStatus.textContent = 'Pronto per l\'uso offline';
+    setTimeout(() => { dlBtn.disabled = false; dlBtn.textContent = '📥 SCARICA'; }, 3000);
+  });
+}
+
+function formatTime(s) {
+  const m = Math.floor(s / 60);
+  const sec = Math.floor(s % 60);
+  return `${m}:${sec.toString().padStart(2, '0')}`;
+}
+
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
+init();
+</script>
+</body>
+</html>

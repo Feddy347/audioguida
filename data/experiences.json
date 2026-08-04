@@ -1,0 +1,296 @@
+[
+  {
+    "id": "grecia-2026",
+    "title": "Grecia 2026",
+    "cities": [
+      {
+        "id": "atene",
+        "title": "Atene",
+        "stops": [
+          {
+            "slug": "acropoli-eretteo",
+            "title": "Acropoli — Eretteo",
+            "subtitle_original": "Ακρόπολη — Ερέχθειο",
+            "subtitle_en": "Acropolis — Erechtheion",
+            "audio": "audio/grecia-2026/atene/acropoli-eretteo.mp3",
+            "duration": 180
+          },
+          {
+            "slug": "acropoli-partenone",
+            "title": "Acropoli — Partenone",
+            "subtitle_original": "Ακρόπολη — Παρθενώνας",
+            "subtitle_en": "Acropolis — Parthenon",
+            "audio": "audio/grecia-2026/atene/acropoli-partenone.mp3",
+            "duration": 180
+          },
+          {
+            "slug": "acropoli-propilei",
+            "title": "Acropoli — Propilei",
+            "subtitle_original": "Ακρόπολη — Προπύλαια",
+            "subtitle_en": "Acropolis — Propylaea",
+            "audio": "audio/grecia-2026/atene/acropoli-propilei.mp3",
+            "duration": 150
+          },
+          {
+            "slug": "acropoli-tempio-di-atena-nike",
+            "title": "Acropoli — Tempio di Atena Nike",
+            "subtitle_original": "Ακρόπολη — Ναός Αθηνάς Νίκης",
+            "subtitle_en": "Acropolis — Temple of Athena Nike",
+            "audio": "audio/grecia-2026/atene/acropoli-tempio-di-atena-nike.mp3",
+            "duration": 120
+          },
+          {
+            "slug": "agora-romana-e-torre-dei-venti",
+            "title": "Agorà Romana e Torre dei Venti",
+            "subtitle_original": "Ρωμαϊκή Αγορά και Πύργος των Αέρηδων",
+            "subtitle_en": "Roman Agora and Tower of the Winds",
+            "audio": "audio/grecia-2026/atene/agora-romana-e-torre-dei-venti.mp3",
+            "duration": 180
+          },
+          {
+            "slug": "anafiotika",
+            "title": "Anafiotika",
+            "subtitle_original": "Αναφιώτικα",
+            "subtitle_en": "Anafiotika",
+            "audio": "audio/grecia-2026/atene/anafiotika.mp3",
+            "duration": 150
+          },
+          {
+            "slug": "arco-di-adriano",
+            "title": "Arco di Adriano",
+            "subtitle_original": "Πύλη του Αδριανού",
+            "subtitle_en": "Arch of Hadrian",
+            "audio": "audio/grecia-2026/atene/arco-di-adriano.mp3",
+            "duration": 120
+          },
+          {
+            "slug": "areopago",
+            "title": "Areopago",
+            "subtitle_original": "Άρειος Πάγος",
+            "subtitle_en": "Areopagus",
+            "audio": "audio/grecia-2026/atene/areopago.mp3",
+            "duration": 150
+          },
+          {
+            "slug": "biblioteca-di-adriano",
+            "title": "Biblioteca di Adriano",
+            "subtitle_original": "Βιβλιοθήκη του Αδριανού",
+            "subtitle_en": "Hadrian's Library",
+            "audio": "audio/grecia-2026/atene/biblioteca-di-adriano.mp3",
+            "duration": 150
+          },
+          {
+            "slug": "cattedrale-metropolitana-e-piccola-mitropoli",
+            "title": "Cattedrale Metropolitana e Piccola Mitropoli",
+            "subtitle_original": "Μητρόπολη Αθηνών και Μικρή Μητρόπολη",
+            "subtitle_en": "Athens Metropolitan Cathedral and Little Metropolis",
+            "audio": "audio/grecia-2026/atene/cattedrale-metropolitana-e-piccola-mitropoli.mp3",
+            "duration": 150
+          },
+          {
+            "slug": "chiesa-di-agia-irini",
+            "title": "Chiesa di Agia Irini",
+            "subtitle_original": "Αγία Ειρήνη",
+            "subtitle_en": "Church of Agia Irini",
+            "audio": "audio/grecia-2026/atene/chiesa-di-agia-irini.mp3",
+            "duration": 120
+          },
+          {
+            "slug": "colle-delle-ninfe-e-prigione-di-socrate",
+            "title": "Colle delle Ninfe e Prigione di Socrate",
+            "subtitle_original": "Λόφος των Νυμφών και Φυλακή του Σωκράτη",
+            "subtitle_en": "Hill of the Nymphs and Prison of Socrates",
+            "audio": "audio/grecia-2026/atene/colle-delle-ninfe-e-prigione-di-socrate.mp3",
+            "duration": 180
+          },
+          {
+            "slug": "giardino-nazionale",
+            "title": "Giardino Nazionale",
+            "subtitle_original": "Εθνικός Κήπος",
+            "subtitle_en": "National Garden",
+            "audio": "audio/grecia-2026/atene/giardino-nazionale.mp3",
+            "duration": 150
+          },
+          {
+            "slug": "mercato-centrale-di-atene",
+            "title": "Mercato Centrale di Atene",
+            "subtitle_original": "Κεντρική Δημοτική Αγορά Αθηνών",
+            "subtitle_en": "Athens Central Market",
+            "audio": "audio/grecia-2026/atene/mercato-centrale-di-atene.mp3",
+            "duration": 150
+          },
+          {
+            "slug": "panagia-kapnikarea",
+            "title": "Panagia Kapnikarea",
+            "subtitle_original": "Παναγία Καπνικαρέα",
+            "subtitle_en": "Panagia Kapnikarea",
+            "audio": "audio/grecia-2026/atene/panagia-kapnikarea.mp3",
+            "duration": 120
+          },
+          {
+            "slug": "piazza-monastiraki",
+            "title": "Piazza Monastiraki",
+            "subtitle_original": "Πλατεία Μοναστηρακίου",
+            "subtitle_en": "Monastiraki Square",
+            "audio": "audio/grecia-2026/atene/piazza-monastiraki.mp3",
+            "duration": 150
+          },
+          {
+            "slug": "quartiere-plaka",
+            "title": "Quartiere Plaka",
+            "subtitle_original": "Πλάκα",
+            "subtitle_en": "Plaka District",
+            "audio": "audio/grecia-2026/atene/quartiere-plaka.mp3",
+            "duration": 180
+          },
+          {
+            "slug": "tempio-di-efesto",
+            "title": "Tempio di Efesto",
+            "subtitle_original": "Ναός Ηφαίστου",
+            "subtitle_en": "Temple of Hephaestus",
+            "audio": "audio/grecia-2026/atene/tempio-di-efesto.mp3",
+            "duration": 150
+          },
+          {
+            "slug": "tempio-di-zeus-olimpio",
+            "title": "Tempio di Zeus Olimpio",
+            "subtitle_original": "Ναός Ολυμπίου Διός",
+            "subtitle_en": "Temple of Olympian Zeus",
+            "audio": "audio/grecia-2026/atene/tempio-di-zeus-olimpio.mp3",
+            "duration": 150
+          },
+          {
+            "slug": "zappeion",
+            "title": "Zappeion",
+            "subtitle_original": "Ζάππειο",
+            "subtitle_en": "Zappeion",
+            "audio": "audio/grecia-2026/atene/zappeion.mp3",
+            "duration": 120
+          }
+        ]
+      },
+      {
+        "id": "pireo",
+        "title": "Pireo",
+        "stops": [
+          {
+            "slug": "cattedrale-della-santissima-trinita",
+            "title": "Cattedrale della Santissima Trinità",
+            "subtitle_original": "Αγία Τριάδα Πειραιώς",
+            "subtitle_en": "Holy Trinity Cathedral",
+            "audio": "audio/grecia-2026/pireo/cattedrale-della-santissima-trinita.mp3",
+            "duration": 120
+          },
+          {
+            "slug": "leone-del-pireo",
+            "title": "Leone del Pireo",
+            "subtitle_original": "Λέων του Πειραιώς",
+            "subtitle_en": "Lion of Piraeus",
+            "audio": "audio/grecia-2026/pireo/leone-del-pireo.mp3",
+            "duration": 150
+          },
+          {
+            "slug": "lungomare-akti-themistokleous",
+            "title": "Lungomare Akti Themistokleous",
+            "subtitle_original": "Ακτή Θεμιστοκλέους",
+            "subtitle_en": "Themistocles Waterfront",
+            "audio": "audio/grecia-2026/pireo/lungomare-akti-themistokleous.mp3",
+            "duration": 150
+          },
+          {
+            "slug": "teatro-antico-del-pireo",
+            "title": "Teatro Antico del Pireo",
+            "subtitle_original": "Αρχαίο Θέατρο Πειραιά",
+            "subtitle_en": "Ancient Theatre of Piraeus",
+            "audio": "audio/grecia-2026/pireo/teatro-antico-del-pireo.mp3",
+            "duration": 120
+          }
+        ]
+      },
+      {
+        "id": "serifos",
+        "title": "Serifos",
+        "stops": [
+          {
+            "slug": "agios-sostis",
+            "title": "Agios Sostis",
+            "subtitle_original": "Άγιος Σώστης",
+            "subtitle_en": "Agios Sostis",
+            "audio": "audio/grecia-2026/serifos/agios-sostis.mp3",
+            "duration": 120
+          },
+          {
+            "slug": "chiesa-di-agios-konstantinos",
+            "title": "Chiesa di Agios Konstantinos",
+            "subtitle_original": "Άγιος Κωνσταντίνος",
+            "subtitle_en": "Church of Agios Konstantinos",
+            "audio": "audio/grecia-2026/serifos/chiesa-di-agios-konstantinos.mp3",
+            "duration": 120
+          },
+          {
+            "slug": "chora-di-serifos",
+            "title": "Chora di Serifos",
+            "subtitle_original": "Χώρα Σερίφου",
+            "subtitle_en": "Chora of Serifos",
+            "audio": "audio/grecia-2026/serifos/chora-di-serifos.mp3",
+            "duration": 180
+          },
+          {
+            "slug": "megalo-livadi",
+            "title": "Megalo Livadi",
+            "subtitle_original": "Μεγάλο Λιβάδι",
+            "subtitle_en": "Megalo Livadi",
+            "audio": "audio/grecia-2026/serifos/megalo-livadi.mp3",
+            "duration": 180
+          },
+          {
+            "slug": "psili-ammos",
+            "title": "Psili Ammos",
+            "subtitle_original": "Ψιλή Άμμος",
+            "subtitle_en": "Psili Ammos",
+            "audio": "audio/grecia-2026/serifos/psili-ammos.mp3",
+            "duration": 120
+          }
+        ]
+      },
+      {
+        "id": "sifnos",
+        "title": "Sifnos",
+        "stops": [
+          {
+            "slug": "festival-gastronomico-delle-cicladi",
+            "title": "Festival Gastronomico delle Cicladi",
+            "subtitle_original": "Φεστιβάλ Κυκλαδικής Γαστρονομίας",
+            "subtitle_en": "Cycladic Gastronomy Festival",
+            "audio": "audio/grecia-2026/sifnos/festival-gastronomico-delle-cicladi.mp3",
+            "duration": 180
+          },
+          {
+            "slug": "monastero-di-chrisopigi",
+            "title": "Monastero di Chrisopigi",
+            "subtitle_original": "Μονή Χρυσοπηγής",
+            "subtitle_en": "Chrysopigi Monastery",
+            "audio": "audio/grecia-2026/sifnos/monastero-di-chrisopigi.mp3",
+            "duration": 180
+          },
+          {
+            "slug": "mulini-a-vento-di-artemonas",
+            "title": "Mulini a vento di Artemonas",
+            "subtitle_original": "Ανεμόμυλοι Αρτεμώνα",
+            "subtitle_en": "Windmills of Artemonas",
+            "audio": "audio/grecia-2026/sifnos/mulini-a-vento-di-artemonas.mp3",
+            "duration": 150
+          },
+          {
+            "slug": "vroulidia",
+            "title": "Vroulidia",
+            "subtitle_original": "Βρουλίδια",
+            "subtitle_en": "Vroulidia",
+            "audio": "audio/grecia-2026/sifnos/vroulidia.mp3",
+            "duration": 120
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "name": "audioguida",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "node generate-audio.mjs"
+  },
+  "dependencies": {
+    "@andresaya/edge-tts": "^1.0.0"
+  }
+}
