@@ -1,4 +1,4 @@
-const SHELL_CACHE = 'audioguida-shell-v1';
+const SHELL_CACHE = 'audioguida-shell-v2';
 const AUDIO_CACHE = 'audioguida-audio-v1';
 
 const SHELL_FILES = [
@@ -8,7 +8,6 @@ const SHELL_FILES = [
   'data/experiences.json'
 ];
 
-// Install: cache app shell
 self.addEventListener('install', e => {
   e.waitUntil(
     caches.open(SHELL_CACHE)
@@ -17,7 +16,6 @@ self.addEventListener('install', e => {
   );
 });
 
-// Activate: clean old caches
 self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys().then(keys =>
@@ -29,19 +27,18 @@ self.addEventListener('activate', e => {
   );
 });
 
-// Fetch: cache-first for shell and audio, network-first for everything else
 self.addEventListener('fetch', e => {
   const url = new URL(e.request.url);
 
-  // Audio files: cache-first (pre-downloaded via the download button)
-  if (url.pathname.includes('/audio/')) {
+  // Audio + transcript files: cache-first (pre-downloaded)
+  if (url.pathname.includes('/audio/') || url.pathname.includes('/scripts/')) {
     e.respondWith(
       caches.match(e.request).then(cached => cached || fetch(e.request))
     );
     return;
   }
 
-  // Shell files: cache-first, fallback to network
+  // Shell: stale-while-revalidate
   e.respondWith(
     caches.match(e.request).then(cached => {
       const fetched = fetch(e.request).then(response => {
